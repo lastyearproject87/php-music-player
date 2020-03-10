@@ -13,7 +13,7 @@ spec:
         app: music-player
     spec:
       containers:
-      - image: okteto/hello-world:php
+      - image: lastyearproject/dockerapps:music_player
         name: music-player
 
 ---
