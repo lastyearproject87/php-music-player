@@ -1,5 +1,5 @@
 name: music-player
-image: /php:7
+image: lastyearproject/dockerapps:music_player
 command: ["bash"]
 forward:
   - 8080:8080
