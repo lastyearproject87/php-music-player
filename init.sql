@@ -1,0 +1,11 @@
+CREATE DATABASE audio;
+
+use audio;
+
+CREATE TABLE song_db (
+	ID INT(11) UNSIGNED AUTO_INCREMENT PRIMARY KEY, 
+	Image LONGBLOB,
+	File_name VARCHAR(2000),
+	real_name VARCHAR(2000),
+	Artist VARCHAR(2000)
+);
