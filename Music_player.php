@@ -465,7 +465,15 @@ $conn->close();
         <?php
 
 // Create connection
-$conn = new mysqli("localhost", "root", "", "audio");
+	       
+	       
+require "config.php";
+require "common.php";
+	       
+	       
+    $connection = new PDO($dsn, $username, $password, $options);
+    
+//$conn = new mysqli("localhost", "root", "", "audio");
 // Check connection
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
@@ -530,8 +538,13 @@ $conn->close();
         <?php
 
 // Create connection
-$conn = new mysqli("localhost", "root", "", "audio");
+//$conn = new mysqli("localhost", "root", "", "audio");
 // Check connection
+//if ($conn->connect_error) {
+  //  die("Connection failed: " . $conn->connect_error);
+//}
+	       
+$connection = new PDO($dsn, $username, $password, $options);
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 } 
