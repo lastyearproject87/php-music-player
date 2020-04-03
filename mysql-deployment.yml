@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sqldb
+  labels:
+    app: webapp-sql
+    tier: backend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: webapp-sql
+      tier: backend
+    spec:
+      containers:
+      - name: webapp1
+        image: lastyearproject/dockerapps:phpapp_web
+        ports:
+        - containerPort: 8081
