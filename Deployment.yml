@@ -1,33 +1,49 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: music-player
+  name: php
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: music-player
+      app: php
   template:
     metadata:
       labels:
-        app: music-player
+        app: php
     spec:
       containers:
-      - image: lastyearproject/dockerapps:music_player
-        name: music-player
-
+      - image: lastyearproject/dockerapps:phpapp_web
+        name: php
+        ports:
+          - containerPort: 80
+            name: php
+      - image: mysql:latest
+        name: db
+        env:
+          - name: MYSQL_ROOT_PASSWORD
+            value: pass
+        ports:
+          - containerPort: 3306
+            name: php 
+      env:
+        - name: MYSQL_ROOT_PASSWORD
+          value: root
+        - name: MYSQL_DATABASE
+          value: audio
+        - name: MYSQL_USER
+          value: devuser
+        - name: MYSQL_PASSWORD 
+          value: devpass
 ---
 
 apiVersion: v1
 kind: Service
 metadata:
-  name: music-player
-  annotations:
-    dev.okteto.com/auto-ingress: "true"
+  name: service-yml
 spec:
-  type: ClusterIP
+  type: LoadBalancer
   ports:
-  - name: "music-player"
-    port: 8080
+  - port: 80
   selector:
-    app: music-player
+    app: php
